@@ -17,7 +17,7 @@ public class BoxFrame extends JFrame implements ActionListener {
     BoxFrame(){
         this.getContentPane().setLayout(null);
         this.setSize(820,300);
-        this.setTitle("Verruckt Box Tracker: Made By yOJURT");
+        this.setTitle("Box Cycle Tracker: Made By yOJURT");
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.WHITE);
@@ -31,7 +31,7 @@ public class BoxFrame extends JFrame implements ActionListener {
         boxes.add("DT Box");
         boxes.add("Jug Box");
         boxes.add("Power Box");
-        boxes.add("Tommy Box");
+        boxes.add("<html>Tommy<br />  Box<html>");
     }
 
 
@@ -66,7 +66,7 @@ public class BoxFrame extends JFrame implements ActionListener {
             tommyBox.highlight();
        }
        if(e.getSource() == resetButton){
-           Verruckt.reset();
+           BoxButton.reset();
        }
     }
 }

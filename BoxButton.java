@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class BoxButton extends JButton {
     private String name;
-    //private boolean isClicked;
+    private boolean isClicked;
+    private static int numClicks = 0;
+    private static ArrayList<BoxButton> boxes = new ArrayList<>();
     BoxButton(String name, BoxFrame frame){
         this.name = name;
         this.addActionListener(frame);
         this.setVisible(true);
         this.setText(name);
         frame.add(this);
-        //isClicked = false;
+        isClicked = false;
         this.setBackground(Color.magenta);
-        Verruckt.boxes.add(0,this);
+        boxes.add(0,this);
     }
 
     BoxButton(BoxFrame frame){
@@ -25,19 +27,40 @@ public class BoxButton extends JButton {
     }
 
     void setClick(){
-        //this.isClicked = true;
-        Verruckt.numClicks++;
-        if(Verruckt.numClicks == Verruckt.boxes.size()){
-            Verruckt.reset();
+        if(isClicked == true){
+            return;
+        }
+        this.isClicked = true;
+        numClicks++;
+        if(numClicks == boxes.size()){
+            BoxButton.reset();
         }
     }
 
+    void resetClick(){
+        this.isClicked = false;
+    }
+
     void highlight(){
-        if(Verruckt.numClicks == 4){
-            Verruckt.resetNumClicks();
+        if(numClicks == 4){
+            resetNumClicks();
             return;
         }
         this.setBackground(Color.RED);
+    }
+
+    static void reset(){
+        if(numClicks < 4){
+            resetNumClicks();
+        }
+        for(int i = 0;i < boxes.size();i++){
+            boxes.get(i).setBackground(Color.magenta);
+            boxes.get(i).resetClick();
+        }
+    }
+
+    static void resetNumClicks(){
+        numClicks = 0;
     }
 
 }
